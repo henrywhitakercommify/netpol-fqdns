@@ -7,5 +7,6 @@ go = "1.27.1"
 description = "List the fqdns allowed in the cluster"
 usage = '''
 flag "--format <format>" help="The format of the output" default="table"
+flag "--kubeconfig <kubeconfig>" help="The path to the kubeconfig file" default="~/.kube/config"
 '''
-run = "go run main.go --format ${usage_format}"
+run = "go run main.go --format ${usage_format} --kubeconfig ${usage_kubeconfig}"
