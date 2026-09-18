@@ -38,6 +38,8 @@ func main() {
 	switch outputFormat {
 	case "json":
 		output, err = format.JSON(rules)
+	case "csv":
+		output, err = format.CSV(rules)
 	case "table":
 		output, err = format.Table(rules)
 	default:
