@@ -1,2 +1,11 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
 [tools]
 go = "1.27.1"
+
+[tasks.list]
+description = "List the fqdns allowed in the cluster"
+usage = '''
+flag "--format <format>" help="The format of the output" default="table"
+'''
+run = "go run main.go --format ${usage_format}"

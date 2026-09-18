@@ -2,8 +2,8 @@
 package format
 
 import (
-	"bytes"
 	"encoding/json"
+	"strings"
 
 	"github.com/fatih/color"
 	"github.com/henrywhitakercommify/netpol-fqdns/internal/collector"
@@ -22,10 +22,12 @@ func Table(rules []collector.Rule) ([]byte, error) {
 	headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
 	columnFmt := color.New(color.FgYellow).SprintfFunc()
 
-	out := &bytes.Buffer{}
+	out := &strings.Builder{}
 
-	tbl := table.New("Name", "Namespace", "FQDN")
-	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt).WithWriter(out)
+	tbl := table.New("Name", "Namespace", "FQDN").
+		WithHeaderFormatter(headerFmt).
+		WithFirstColumnFormatter(columnFmt).
+		WithWriter(out)
 
 	for _, r := range rules {
 		for _, f := range r.FQDNs {
@@ -33,5 +35,7 @@ func Table(rules []collector.Rule) ([]byte, error) {
 		}
 	}
 
-	return out.Bytes(), nil
+	tbl.Print()
+
+	return []byte(out.String()), nil
 }
