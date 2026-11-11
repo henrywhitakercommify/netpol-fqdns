@@ -1,7 +1,7 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
 [tools]
-go = "1.27.1"
+go = "1.27.4"
 
 [tasks.list]
 description = "List the fqdns allowed in the cluster"
